@@ -18,17 +18,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BVm-yj-hjR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="231" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BVm-yj-hjR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="post-cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post-cell" id="Juh-I1-2cc" customClass="PostCell" customModule="reddit_browser" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="post-cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post-cell" rowHeight="231" id="Juh-I1-2cc" customClass="PostCell" customModule="reddit_browser" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="231"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Juh-I1-2cc" id="B3c-yr-zae">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="230.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCC-Pk-9Hc">
+                                                    <rect key="frame" x="15" y="39" width="56" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vy5-1O-w1Y">
+                                                    <rect key="frame" x="265" y="39" width="25" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tot-4o-odO">
+                                                    <rect key="frame" x="300" y="38.5" width="60" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q90-2L-jn9">
+                                                    <rect key="frame" x="15" y="11" width="345" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-dI-SkV">
+                                                    <rect key="frame" x="15" y="68.5" width="345" height="147"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jh6-dI-SkV" firstAttribute="top" secondItem="ZCC-Pk-9Hc" secondAttribute="bottom" constant="15" id="9dQ-p0-4bH"/>
+                                                <constraint firstItem="q90-2L-jn9" firstAttribute="leading" secondItem="B3c-yr-zae" secondAttribute="leadingMargin" id="Agt-Cg-nUo"/>
+                                                <constraint firstItem="Tot-4o-odO" firstAttribute="leading" secondItem="Vy5-1O-w1Y" secondAttribute="trailing" constant="10" id="FYr-Fq-0bJ"/>
+                                                <constraint firstItem="ZCC-Pk-9Hc" firstAttribute="leading" secondItem="B3c-yr-zae" secondAttribute="leadingMargin" id="Haj-DK-9cY"/>
+                                                <constraint firstItem="ZCC-Pk-9Hc" firstAttribute="top" secondItem="q90-2L-jn9" secondAttribute="bottom" constant="10" id="Qy1-nX-1x0"/>
+                                                <constraint firstItem="Jh6-dI-SkV" firstAttribute="leading" secondItem="B3c-yr-zae" secondAttribute="leading" constant="15" id="W1b-M7-XYQ"/>
+                                                <constraint firstItem="q90-2L-jn9" firstAttribute="top" secondItem="B3c-yr-zae" secondAttribute="topMargin" id="ZrG-hY-H4M"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="q90-2L-jn9" secondAttribute="trailing" id="bWG-U5-cky"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jh6-dI-SkV" secondAttribute="trailing" constant="15" id="da3-2R-Ur2"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jh6-dI-SkV" secondAttribute="bottom" constant="15" id="jdt-eV-dkD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tot-4o-odO" secondAttribute="trailing" id="nIm-bI-kGS"/>
+                                                <constraint firstItem="Tot-4o-odO" firstAttribute="bottom" secondItem="ZCC-Pk-9Hc" secondAttribute="bottom" id="svt-cI-RnC"/>
+                                                <constraint firstItem="Vy5-1O-w1Y" firstAttribute="bottom" secondItem="ZCC-Pk-9Hc" secondAttribute="bottom" id="vEY-Bh-AVo"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="Tot-4o-odO" id="zDA-e6-TXj"/>
+                                            <outlet property="previewImageView" destination="Jh6-dI-SkV" id="Zdx-Kv-Mo6"/>
+                                            <outlet property="timeLabel" destination="Vy5-1O-w1Y" id="McU-g1-S0J"/>
+                                            <outlet property="titleLabel" destination="q90-2L-jn9" id="CEp-vl-0AC"/>
+                                            <outlet property="userLabel" destination="ZCC-Pk-9Hc" id="gz3-e0-e6w"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -48,6 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="26.53673163418291"/>
         </scene>
     </scenes>
 </document>

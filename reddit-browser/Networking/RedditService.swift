@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  RedditService.swift
 //  reddit-browser
 //
 //  Created by Peisen Xue on 2/4/19.
@@ -8,6 +8,3 @@
 
 import Foundation
 
-class Post {
-    
-}
