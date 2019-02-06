@@ -28,7 +28,9 @@ struct Post: Codable {
 struct PostDetail: Codable {
     var title: String
     var author: String
-    var thumbnail: String
+    var url: String
+    var post_hint: String?
     var created_utc: Int
     var num_comments: Int
+    var post_data: Data?
 }

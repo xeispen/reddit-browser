@@ -16,6 +16,7 @@
 		9D73522A2208D3D60098A0CA /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7352292208D3D60098A0CA /* PostCell.swift */; };
 		9D73522C2208D6D70098A0CA /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D73522B2208D6D70098A0CA /* Codable.swift */; };
 		9D73522E2208DA890098A0CA /* RedditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D73522D2208DA890098A0CA /* RedditService.swift */; };
+		9D73523122092CD30098A0CA /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D73523022092CD30098A0CA /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9D7352292208D3D60098A0CA /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9D73522B2208D6D70098A0CA /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		9D73522D2208DA890098A0CA /* RedditService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditService.swift; sourceTree = "<group>"; };
+		9D73523022092CD30098A0CA /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				9D7352272208D1C60098A0CA /* MainViewModel.swift */,
 				9D7352192208CCCD0098A0CA /* Main.storyboard */,
 				9D7352292208D3D60098A0CA /* PostCell.swift */,
+				9D73523022092CD30098A0CA /* PostViewModel.swift */,
 				9D73522F2208DA940098A0CA /* Networking */,
 				9D73522B2208D6D70098A0CA /* Codable.swift */,
 				9D73521C2208CCCF0098A0CA /* Assets.xcassets */,
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D7352182208CCCD0098A0CA /* MainViewController.swift in Sources */,
+				9D73523122092CD30098A0CA /* PostViewModel.swift in Sources */,
 				9D7352162208CCCD0098A0CA /* AppDelegate.swift in Sources */,
 				9D7352282208D1C60098A0CA /* MainViewModel.swift in Sources */,
 				9D73522A2208D3D60098A0CA /* PostCell.swift in Sources */,
