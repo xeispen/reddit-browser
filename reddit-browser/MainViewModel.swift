@@ -16,7 +16,7 @@ class MainViewModel {
     // TODO: Move this into a networking class and inject as dependency
     func requestData(completion: @escaping([Post]) -> Void) {
 
-        let url = URL(string: "https://www.reddit.com/r/all/top/.json?limit=50")
+        let url = URL(string: Endpoint.posts)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
             guard error == nil else {
@@ -27,6 +27,13 @@ class MainViewModel {
             guard let responseData = data else {
                 print("Did not receive posts response")
                 return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print("Response code from server \(httpResponse.statusCode)")
+                    return
+                }
             }
 
             do {
@@ -56,7 +63,7 @@ class MainViewModel {
         // Loop through array of posts to retrieve image
         for (index, post) in postArray.enumerated() {
             // Fetch data if it does not exists AND the post is an image
-            if post.data.post_data == nil && post.data.post_hint == "image" {
+            if post.data.post_data == nil && post.data.post_hint == PostType.image.rawValue {
                 dispatch.enter()
 
                 // Fetch data for individual post
@@ -89,6 +96,13 @@ class MainViewModel {
             guard let responseData = data else {
                 print("Did not receive image data")
                 return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print("Response code from server \(httpResponse.statusCode)")
+                    return
+                }
             }
             
             completion(responseData)

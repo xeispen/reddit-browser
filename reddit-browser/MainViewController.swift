@@ -15,6 +15,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     var mainViewModel = MainViewModel()
     var postViewController = PostDetailViewController()
+    var refreshControl = UIRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -27,9 +28,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
         
+        // Configure refresh control
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
         // Configure tableview attributes
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.estimatedRowHeight = 175
+        tableView.refreshControl = refreshControl
+
 
     }
     
@@ -52,16 +59,29 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             }
         }
-        
-        
+
     }
 
+    @objc func refresh() {
+        print("refreshing")
+        // Show activity indicator while loading posts
+        refreshControl.beginRefreshing()
+        
+        // Request data from ViewModel
+        mainViewModel.requestData() { (response) in
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainViewModel.postArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "post-cell") as! PostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellID.post.rawValue) as! PostCell
         let post = mainViewModel.postArray[indexPath.row]
         cell.setPostData(post: post)
         return cell
@@ -80,8 +100,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = mainViewModel.postArray[indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let postViewController = storyboard.instantiateViewController(withIdentifier: "post-detail-vc") as! PostDetailViewController
+        let storyboard = UIStoryboard(name: StoryBoardID.main.rawValue, bundle: nil)
+        let postViewController = storyboard.instantiateViewController(withIdentifier: ViewControllerID.postDetail.rawValue) as! PostDetailViewController
         postViewController.post = post
         self.show(postViewController, sender: nil)
     }

@@ -34,3 +34,5 @@ struct PostDetail: Codable {
     var num_comments: Int
     var post_data: Data?
 }
+
+
