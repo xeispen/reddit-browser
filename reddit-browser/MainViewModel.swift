@@ -12,18 +12,35 @@ class MainViewModel {
     
     var postArray:[Post] = []
     
-    
+    // Request data from reddit
+    // TODO: Move this into a networking class and inject as dependency
     func requestData(completion: @escaping([Post]) -> Void) {
 
         let url = URL(string: "https://www.reddit.com/r/all/top/.json?limit=50")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
-            if let data = data {
-                let object = try? JSONDecoder().decode(PostResponse.self, from: data)
-                if let posts = object?.data.children {
-                    self.postArray = posts
-                    completion(posts)
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            guard let responseData = data else {
+                print("Did not receive posts response")
+                return
+            }
+
+            do {
+                guard let postsResponse = try? JSONDecoder().decode(PostResponse.self, from: responseData) else {
+                    print("Could not encode post responses")
+                    return
                 }
+                
+                self.postArray = postsResponse.data.children
+                
+                self.populateImages() { array in
+                    completion(array)
+                }
+
             }
 
         }
@@ -31,30 +48,50 @@ class MainViewModel {
         
     }
     
+    // Loop through array and fetch images where applicable
     func populateImages(completion: @escaping([Post]) -> Void) {
+        
+        let dispatch = DispatchGroup()
+        
+        // Loop through array of posts to retrieve image
         for (index, post) in postArray.enumerated() {
-            self.fetchData(post: post){ data in
-                self.postArray[index].data.post_data = data
+            // Fetch data if it does not exists AND the post is an image
+            if post.data.post_data == nil && post.data.post_hint == "image" {
+                dispatch.enter()
+
+                // Fetch data for individual post
+                self.fetchData(post: post){ data in
+                    self.postArray[index].data.post_data = data
+                    dispatch.leave()
+                }
             }
-            if index == self.postArray.count - 1 {
-                completion(self.postArray)
-            }
+
+        }
+        
+        // Call closure when all async calls have finished
+        dispatch.notify(queue: .main) {
+            print("Finished all requests.")
+            completion(self.postArray)
         }
        
     }
     
+    // Takes a post as input and returns imagedata as closure
     func fetchData(post: Post, completion: @escaping(Data) -> Void) {
-        if post.data.post_data != nil || post.data.post_hint != "image" {
-            return
-        }
-
         let url = URL(string: post.data.url)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
-            if let data = data {
-                completion(data)
+            guard error == nil else {
+                print(error!)
+                return
             }
             
+            guard let responseData = data else {
+                print("Did not receive image data")
+                return
+            }
+            
+            completion(responseData)
         }
         task.resume()
             

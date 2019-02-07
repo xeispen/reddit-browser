@@ -16,13 +16,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var mainViewModel = MainViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Setup subviews
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = UIColor.darkGray
         self.view.bringSubviewToFront(activityIndicator)
+        
+        // Configure tableview delegates
         tableView.dataSource = self
         tableView.delegate = self
+        
+        // Configure tableview attributes
         tableView.separatorStyle = .none
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 175
 
     }
     
@@ -30,21 +36,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         loadData()
     }
     
     func loadData() {
+        // Show activity indicator while loading posts
         activityIndicator.startAnimating()
+        
+        // Request data from ViewModel
         mainViewModel.requestData() { (response) in
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
                 self.tableView.reloadData()
-            }
-            self.mainViewModel.populateImages() { array in
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.tableView.reloadData()
-                }
-                
             }
         }
         
@@ -65,20 +69,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let post = mainViewModel.postArray[indexPath.row]
         
+        // If the post has no image data to display, we display a smaller cell
         if post.data.post_data != nil {
-            return UITableView.automaticDimension
+            return 250
         } else {
-            return 90
+            return 100
         }
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let post = mainViewModel.postArray[indexPath.row]
-//
-//        mainViewModel.fetchData(post: post){ data in
-//            self.mainViewModel.postArray[indexPath.row].data.post_data = data
-//        }
-//    }
 
 }
 

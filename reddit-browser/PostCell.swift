@@ -22,8 +22,8 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        previewImageView.translatesAutoresizingMaskIntoConstraints = true
+
+        previewImageView.translatesAutoresizingMaskIntoConstraints = false
 
     }
 
@@ -32,24 +32,20 @@ class PostCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    override func layoutSubviews() {
 
-    }
-
-    
+    // Takes an instance of Post and sets the UI of the cell
     func setPostData(post: Post) {
         titleLabel.text = post.data.title
         userLabel.text = post.data.author
         commentLabel.text = "\(post.data.num_comments) comments"
         timeLabel.text = formatTimeString(post: post)
-        
+
         if let data = post.data.post_data {
             previewImageView.image = UIImage(data: data)
         } else {
             previewImageView.image = nil
         }
-       
+
     }
     
     private func formatTimeString(post: Post) -> String {
@@ -58,10 +54,12 @@ class PostCell: UITableViewCell {
         let nowTime = Int(timeInSeconds)
         let postTime = post.data.created_utc
         let diff = nowTime - postTime
-        let minutes = diff / 60
-        let hours = minutes / 60
+        let hours = diff / (60 * 60)
         return "\(hours) hours ago"
 
     }
 
+    
+    
+    
 }
