@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var mainViewModel = MainViewModel()
+    var postViewController = PostDetailViewController()
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -75,6 +76,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             return 100
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let post = mainViewModel.postArray[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let postViewController = storyboard.instantiateViewController(withIdentifier: "post-detail-vc") as! PostDetailViewController
+        postViewController.post = post
+        self.show(postViewController, sender: nil)
     }
     
 
