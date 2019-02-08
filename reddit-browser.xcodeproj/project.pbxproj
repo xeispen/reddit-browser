@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D22D4DF220C8EDE00D36240 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22D4DE220C8EDE00D36240 /* Constants.swift */; };
+		9D22D4E1220DEEE500D36240 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22D4E0220DEEE500D36240 /* PostDetailViewModel.swift */; };
 		9D482787220BBFBE0028325C /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D482786220BBFBE0028325C /* PostDetailViewController.swift */; };
 		9D7352162208CCCD0098A0CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7352152208CCCD0098A0CA /* AppDelegate.swift */; };
 		9D7352182208CCCD0098A0CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7352172208CCCD0098A0CA /* MainViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		9D22D4DE220C8EDE00D36240 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9D22D4E0220DEEE500D36240 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		9D482786220BBFBE0028325C /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		9D7352122208CCCD0098A0CA /* reddit-browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "reddit-browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7352152208CCCD0098A0CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				9D7352172208CCCD0098A0CA /* MainViewController.swift */,
 				9D7352272208D1C60098A0CA /* MainViewModel.swift */,
 				9D482786220BBFBE0028325C /* PostDetailViewController.swift */,
+				9D22D4E0220DEEE500D36240 /* PostDetailViewModel.swift */,
 				9D7352192208CCCD0098A0CA /* Main.storyboard */,
 				9D7352292208D3D60098A0CA /* PostCell.swift */,
 				9D73522B2208D6D70098A0CA /* Codables.swift */,
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D7352182208CCCD0098A0CA /* MainViewController.swift in Sources */,
+				9D22D4E1220DEEE500D36240 /* PostDetailViewModel.swift in Sources */,
 				9D22D4DF220C8EDE00D36240 /* Constants.swift in Sources */,
 				9D482787220BBFBE0028325C /* PostDetailViewController.swift in Sources */,
 				9D7352162208CCCD0098A0CA /* AppDelegate.swift in Sources */,

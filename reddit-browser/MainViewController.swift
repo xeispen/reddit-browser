@@ -99,7 +99,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let post = mainViewModel.postArray[indexPath.row]
         let storyboard = UIStoryboard(name: StoryBoardID.main.rawValue, bundle: nil)
         let postViewController = storyboard.instantiateViewController(withIdentifier: ViewControllerID.postDetail.rawValue) as! PostDetailViewController
-        postViewController.post = post
+        postViewController.postDetailViewModel.post = post
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     

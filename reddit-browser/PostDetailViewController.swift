@@ -10,26 +10,21 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
 
-    var post: Post?
+    var postDetailViewModel = PostDetailViewModel()
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setImage()
+        loadData()
     }
     
     // Takes an instance of Post and sets the UI of the cell
-    func setImage() {
+    func loadData() {
 
-        if let post = self.post {
-            if let data = post.data.post_data {
-                imageView.image = UIImage(data: data)
-            } else {
-                imageView.image = nil
-            }
-        }
+        imageView.image = postDetailViewModel.getImage()
+
 
     }
     
