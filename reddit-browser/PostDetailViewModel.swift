@@ -24,5 +24,44 @@ class PostDetailViewModel {
     }
     
     
+    func formatTimeString() -> String {
+        
+        if let post = post {
+            let timeInSeconds: TimeInterval = Date().timeIntervalSince1970
+            let nowTime = Int(timeInSeconds)
+            let postTime = post.data.created_utc
+            let diff = nowTime - postTime
+            let hours = diff / (60 * 60)
+            return "\(hours) hours ago"
+        } else {
+            return "-"
+        }
+
+    }
+    
+    func getName() -> String {
+        if let post = post {
+            return post.data.author
+        } else {
+            return "-"
+        }
+    }
+    
+
+    func getComment() -> String {
+        if let post = post {
+            return "\(post.data.num_comments) comments"
+        } else {
+            return "-"
+        }
+    }
+    
+    func getTitle() -> String {
+        if let post = post {
+            return post.data.title
+        } else {
+            return "-"
+        }
+    }
     
 }
