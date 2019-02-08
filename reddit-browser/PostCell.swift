@@ -22,15 +22,10 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        previewImageView.translatesAutoresizingMaskIntoConstraints = false
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     // Takes an instance of Post and sets the UI of the cell
