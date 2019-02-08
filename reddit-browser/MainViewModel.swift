@@ -62,7 +62,8 @@ class MainViewModel {
         
         // Loop through array of posts to retrieve image
         for (index, post) in postArray.enumerated() {
-            // Fetch data if it does not exists AND the post is an image
+            // Fetch data if it is nil AND the post is an image
+    
             if post.data.post_data == nil && post.data.post_hint == PostType.image.rawValue {
                 dispatch.enter()
 
@@ -77,7 +78,6 @@ class MainViewModel {
         
         // Call closure when all async calls have finished
         dispatch.notify(queue: .main) {
-            print("Finished all requests.")
             completion(self.postArray)
         }
        

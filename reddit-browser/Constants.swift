@@ -25,6 +25,10 @@ enum StoryBoardID: String {
     case main = "Main"
 }
 
+enum ViewControllerTitle: String {
+    case main = "/r/all"
+}
+
 struct Endpoint {
     static let posts = "https://www.reddit.com/r/all/top/.json?limit=50"
 }

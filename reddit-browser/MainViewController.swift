@@ -32,10 +32,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
-        // Configure tableview attributes
+        // Configure tableview
         tableView.separatorStyle = .singleLine
         tableView.estimatedRowHeight = 175
         tableView.refreshControl = refreshControl
+        
+        // Set title for navigation controller
+        self.title = ViewControllerTitle.main.rawValue
 
 
     }
@@ -63,7 +66,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     @objc func refresh() {
-        print("refreshing")
+
         // Show activity indicator while loading posts
         refreshControl.beginRefreshing()
         
