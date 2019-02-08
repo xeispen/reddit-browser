@@ -10,27 +10,30 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
 
-    var post: Post?
+    var postDetailViewModel = PostDetailViewModel()
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setImage()
+        loadData()
     }
     
-    // Takes an instance of Post and sets the UI of the cell
-    func setImage() {
+    // Sets UI from the ViewModel
+    func loadData() {
 
-        if let post = self.post {
-            if let data = post.data.post_data {
-                imageView.image = UIImage(data: data)
-            } else {
-                imageView.image = nil
-            }
-        }
-
+        imageView.image = postDetailViewModel.getImage()
+        timeLabel.text = postDetailViewModel.formatTimeString()
+        userLabel.text = postDetailViewModel.getName()
+        commentLabel.text = postDetailViewModel.getComment()
+        titleLabel.text = postDetailViewModel.getTitle()
+        
+        
     }
     
     @IBAction func closePressed(_ sender: Any) {

@@ -34,7 +34,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Configure tableview
         tableView.separatorStyle = .singleLine
-        tableView.estimatedRowHeight = 175
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.refreshControl = refreshControl
         
         // Set title for navigation controller
@@ -91,21 +92,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let post = mainViewModel.postArray[indexPath.row]
-        
-        // If the post has no image data to display, we display a smaller cell
-        if post.data.post_data != nil {
-            return 250
-        } else {
-            return 100
-        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = mainViewModel.postArray[indexPath.row]
         let storyboard = UIStoryboard(name: StoryBoardID.main.rawValue, bundle: nil)
         let postViewController = storyboard.instantiateViewController(withIdentifier: ViewControllerID.postDetail.rawValue) as! PostDetailViewController
-        postViewController.post = post
+        postViewController.postDetailViewModel.post = post
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
